@@ -1,23 +1,20 @@
 import { useReducer, useRef } from "react";
 import TodoItem from "./TodoItem";
 import { useForm } from "../hooks/useForm";
-import Form from "./Form";
 
 export interface Todo {
+  id: number;
   value: string;
 }
 
 const initialState: { todo: Todo[] } = {
-  todo: [{ value: "Go to buy pickles" }],
+  todo: [{ id: 1, value: "Go to buy pickles" }],
 };
 
-type ActionType = { type: "delete" } | { type: "create" } | { type: "edit" };
+type ActionType = { type: "delete" } | { type: "edit" };
 
 // TODO
 const actionReducer = (state: typeof initialState, action: ActionType) => {};
-
-
-// TODO: Implement automatic id
 
 export default function TodoApp() {
   const { formValues, inputValue, setInputValue, handleSubmit } = useForm(
@@ -42,10 +39,10 @@ export default function TodoApp() {
           <span className="material-symbols-outlined">add</span>
         </button>
       </form>
-      
+
       <ul>
-        {formValues.map((formValues, i = 1) => (
-          <TodoItem key={i} formValue={formValues} />
+        {formValues.map((formValues, id) => (
+          <TodoItem key={id} formValue={formValues} />
         ))}
       </ul>
     </div>

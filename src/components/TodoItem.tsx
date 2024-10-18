@@ -10,7 +10,7 @@ export default function TodoItem({ formValue }: TodoItemProps) {
   return (
     <div>
       <h2>
-        {id}. {value}
+        {+id}. {value}
       </h2>
 
       <div className="actions">

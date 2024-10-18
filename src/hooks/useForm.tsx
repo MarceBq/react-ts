@@ -8,11 +8,21 @@ export const useForm = (initialValue: Todo[]) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-    const newTodo = { value: inputValue };
+
+    const newTodo = { id: formValues.length + 1, value: inputValue };
+
+    console.log(`Aca se asigna un nuebo valor: ${newTodo.value}`);
+
+    if (formValues.some((todo) => todo.value.includes(newTodo.value))) {
+      setInputValue("");
+      return;
+    }
 
     setFormValues((prevFormValues) => [...prevFormValues, newTodo]);
     setInputValue("");
   };
+
+  console.log("Estado actual de los valores del formulario: ", formValues);
 
   return {
     formValues,
